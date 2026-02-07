@@ -246,6 +246,7 @@
             z-index: 10000;
             opacity: 0;
             transition: opacity 0.5s;
+            padding: 20px;
         }
 
         .modal-overlay.show {
@@ -628,12 +629,13 @@
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
             background: white;
-            padding: 60px;
+            padding: 50px 30px;
             border-radius: 30px;
             box-shadow: 0 30px 80px rgba(0,0,0,0.5);
             z-index: 10002;
             text-align: center;
             max-width: 90%;
+            width: 500px;
             transition: transform 0.5s;
         }
 
@@ -642,15 +644,48 @@
         }
 
         .response-popup h2 {
-            font-size: 3em;
+            font-size: 2.5em;
             color: #e74c3c;
             margin-bottom: 20px;
         }
 
         .response-popup p {
-            font-size: 1.3em;
+            font-size: 1.2em;
             color: #333;
             line-height: 1.8;
+            margin: 15px 0;
+        }
+
+        /* Emoji grid for success popup */
+        .emoji-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+            font-size: 3em;
+        }
+
+        .emoji-grid span {
+            animation: popIn 0.5s ease-out backwards;
+        }
+
+        .emoji-grid span:nth-child(1) { animation-delay: 0.1s; }
+        .emoji-grid span:nth-child(2) { animation-delay: 0.2s; }
+        .emoji-grid span:nth-child(3) { animation-delay: 0.3s; }
+        .emoji-grid span:nth-child(4) { animation-delay: 0.4s; }
+        .emoji-grid span:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
         }
 
         .confetti {
@@ -710,11 +745,18 @@
                 padding: 30px 20px;
                 max-width: 95%;
             }
+            .modal-content::before,
+            .modal-content::after {
+                font-size: 40px;
+            }
             .modal-header h2 {
                 font-size: 2em;
             }
+            .modal-header .envelope-icon {
+                font-size: 60px;
+            }
             .letter-content p {
-                font-size: 1.1em;
+                font-size: 1.05em;
             }
             .modal-buttons {
                 flex-direction: column;
@@ -723,12 +765,58 @@
             .modal-btn {
                 width: 90%;
                 max-width: 300px;
+                padding: 18px 30px;
+                font-size: 1.1em;
+            }
+            .proposal-question {
+                padding: 25px 15px;
             }
             .proposal-question h3 {
                 font-size: 1.5em;
             }
             .proposal-question p {
                 font-size: 1.2em;
+            }
+            .proposal-question .ring-icon {
+                font-size: 60px;
+            }
+            .signature {
+                font-size: 1.1em;
+            }
+            
+            /* Mobile optimized response popup */
+            .response-popup {
+                padding: 35px 25px;
+                width: 90%;
+                max-width: 400px;
+            }
+            .response-popup h2 {
+                font-size: 2em;
+            }
+            .response-popup p {
+                font-size: 1.1em;
+                margin: 12px 0;
+            }
+            .emoji-grid {
+                gap: 10px;
+                font-size: 2.5em;
+                margin: 20px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 25px 15px;
+            }
+            .response-popup {
+                padding: 30px 20px;
+            }
+            .response-popup h2 {
+                font-size: 1.8em;
+            }
+            .emoji-grid {
+                font-size: 2em;
+                gap: 8px;
             }
         }
     </style>
@@ -1023,11 +1111,17 @@
             popup.className = 'response-popup';
             popup.innerHTML = `
                 <h2>💕 Yay! 💕</h2>
-                <div style="font-size: 5em; margin: 20px 0;">🎉💍❤️🎊✨</div>
-                <p>You just made me the happiest person alive!</p>
-                <p style="font-size: 1.5em; color: #e74c3c; margin-top: 20px; font-weight: bold;">I love you so much!</p>
-                <p style="font-size: 1.2em; margin-top: 15px;">Forever and always, my love! 💖</p>
-                <p style="font-size: 0.9em; color: #666; margin-top: 30px; cursor: pointer;" onclick="this.parentElement.remove()">Click to close</p>
+                <div class="emoji-grid">
+                    <span>🎉</span>
+                    <span>💍</span>
+                    <span>❤️</span>
+                    <span>🎊</span>
+                    <span>✨</span>
+                </div>
+                <p style="font-weight: bold;">You just made me the happiest person alive!</p>
+                <p style="font-size: 1.4em; color: #e74c3c; font-weight: bold;">I love you so much!</p>
+                <p>Forever and always, my love! 💖</p>
+                <p style="font-size: 0.9em; color: #999; margin-top: 25px; cursor: pointer;" onclick="this.parentElement.remove()">Click to close</p>
             `;
             document.body.appendChild(popup);
             setTimeout(() => popup.classList.add('show'), 10);
@@ -1038,11 +1132,11 @@
             popup.className = 'response-popup';
             popup.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #c92a2a 100%)';
             popup.innerHTML = `
-                <div style="font-size: 6em; color: white; margin-bottom: 20px;">❌</div>
-                <h2 style="color: white; font-size: 2.5em; margin-bottom: 20px;">ERROR!</h2>
-                <p style="font-size: 1.4em; color: white; font-weight: bold; margin: 30px 0;">You can only choose option one! 💕</p>
-                <p style="font-size: 1.1em; color: rgba(255,255,255,0.9); margin: 20px 0;">There's only one correct answer here... 😉</p>
-                <p style="font-size: 1em; color: rgba(255,255,255,0.8); margin: 15px 0;">My heart only knows "YES"! ❤️</p>
+                <div style="font-size: 5em; color: white; margin-bottom: 15px;">❌</div>
+                <h2 style="color: white; font-size: 2.2em; margin-bottom: 15px;">ERROR!</h2>
+                <p style="font-size: 1.3em; color: white; font-weight: bold; margin: 20px 0;">You can only choose option one! 💕</p>
+                <p style="font-size: 1.1em; color: rgba(255,255,255,0.9); margin: 15px 0;">There's only one correct answer here... 😉</p>
+                <p style="font-size: 1em; color: rgba(255,255,255,0.8); margin: 12px 0;">My heart only knows "YES"! ❤️</p>
                 <button style="
                     background: white;
                     color: #c92a2a;
