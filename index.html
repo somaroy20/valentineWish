@@ -878,12 +878,13 @@
     </div>
 
     <!-- Background Music -->
-    <audio id="bgMusic" loop preload="auto" playsinline>
-        <source src="2026-02-07-22-19-04.m4a" type="audio/mpeg">
+    <audio id="bgMusic" loop preload="auto" playsinline webkit-playsinline x-webkit-airplay="allow">
+        <source src="2026-02-07-22-19-04.m4a" type="audio/mp4">
+        <source src="2026-02-07-22-19-04.m4a" type="audio/x-m4a">
     </audio>
 
     <!-- Music Control Button -->
-    <button class="music-control playing" id="musicControl" onclick="toggleMusic()">🎵</button>
+    <button class="music-control" id="musicControl" onclick="toggleMusic()">🔇</button>
 
     <!-- Floating Hearts -->
     <div class="hearts" id="hearts"></div>
@@ -1041,28 +1042,33 @@
         const musicControl = document.getElementById('musicControl');
         const welcomeOverlay = document.getElementById('welcomeOverlay');
         let isPlaying = false;
-        let hasInteracted = false;
 
-        bgMusic.volume = 0.4;
+        bgMusic.volume = 0.5;
 
         function startExperience() {
-            hasInteracted = true;
             welcomeOverlay.classList.add('hidden');
             
+            // Try to play music with user interaction
             setTimeout(() => {
-                bgMusic.load();
-                bgMusic.play()
-                    .then(() => {
-                        isPlaying = true;
-                        musicControl.classList.add('playing');
-                        musicControl.innerHTML = '🎵';
-                    })
-                    .catch((error) => {
-                        console.error('Music error:', error);
-                        isPlaying = false;
-                        musicControl.innerHTML = '🔇';
-                    });
-            }, 300);
+                const playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise
+                        .then(() => {
+                            isPlaying = true;
+                            musicControl.classList.add('playing');
+                            musicControl.innerHTML = '🎵';
+                            console.log('Music started successfully');
+                        })
+                        .catch((error) => {
+                            console.log('Auto-play prevented:', error);
+                            // Show muted icon
+                            musicControl.innerHTML = '🔇';
+                            musicControl.classList.remove('playing');
+                            isPlaying = false;
+                        });
+                }
+            }, 100);
         }
 
         window.startExperience = startExperience;
@@ -1074,34 +1080,23 @@
                 musicControl.classList.remove('playing');
                 isPlaying = false;
             } else {
-                bgMusic.load();
-                bgMusic.play()
-                    .then(() => {
-                        musicControl.innerHTML = '🎵';
-                        musicControl.classList.add('playing');
-                        isPlaying = true;
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
+                const playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise
+                        .then(() => {
+                            musicControl.innerHTML = '🎵';
+                            musicControl.classList.add('playing');
+                            isPlaying = true;
+                            console.log('Music playing');
+                        })
+                        .catch(error => {
+                            console.error('Playback error:', error);
+                            alert('Unable to play music. Please check if the audio file is accessible.');
+                        });
+                }
             }
         }
-
-        // Stop music when leaving page
-        window.addEventListener('beforeunload', function() {
-            if (isPlaying) {
-                bgMusic.pause();
-                bgMusic.currentTime = 0;
-            }
-        });
-
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden && isPlaying) {
-                bgMusic.pause();
-                musicControl.innerHTML = '🔇';
-                musicControl.classList.remove('playing');
-            }
-        });
 
         // Response functions
         function yesResponse() {
@@ -1204,21 +1199,6 @@
         // Initialize
         createHearts();
         createSparkles();
-
-        // Desktop autoplay attempt
-        if (window.innerWidth > 768) {
-            window.addEventListener('load', function() {
-                setTimeout(() => {
-                    bgMusic.play().then(() => {
-                        welcomeOverlay.classList.add('hidden');
-                        isPlaying = true;
-                        musicControl.classList.add('playing');
-                    }).catch(() => {
-                        console.log('Autoplay blocked');
-                    });
-                }, 500);
-            });
-        }
     </script>
 </body>
 </html>
