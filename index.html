@@ -171,16 +171,276 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* Interactive Buttons */
-        .button-container {
+        /* Letter Button */
+        .letter-button-container {
+            margin: 50px auto;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .letter-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 25px 60px;
+            font-size: 1.5em;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.5);
+            transition: all 0.4s;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .letter-btn:hover:before {
+            left: 100%;
+        }
+
+        .letter-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(245, 87, 108, 0.7);
+        }
+
+        .letter-btn .icon {
+            display: inline-block;
+            margin-right: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,240,245,0.98));
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.5);
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.7) rotateY(-30deg);
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 3px solid rgba(231, 76, 60, 0.4);
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1) rotateY(0deg);
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(231, 76, 60, 0.1);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: rgba(231, 76, 60, 0.5);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(231, 76, 60, 0.8);
+        }
+
+        /* Floating hearts in modal */
+        .modal-content::before,
+        .modal-content::after {
+            content: '💕';
+            position: absolute;
+            font-size: 60px;
+            opacity: 0.2;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .modal-content::before {
+            top: 20px;
+            left: 20px;
+        }
+
+        .modal-content::after {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Close button */
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: #e74c3c;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* Modal Header */
+        .modal-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-header h2 {
+            color: #e74c3c;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(231, 76, 60, 0.2);
+        }
+
+        .modal-header .envelope-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Letter Content */
+        .letter-content {
+            margin: 30px 0;
+        }
+
+        .letter-content p {
+            color: #333;
+            font-size: 1.2em;
+            line-height: 2;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .letter-content .greeting {
+            font-style: italic;
+            font-size: 1.3em;
+            color: #e74c3c;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-style: italic;
+            color: #666;
+            font-size: 1.3em;
+            text-align: right;
+        }
+
+        /* Proposal Question */
+        .proposal-question {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(255, 182, 193, 0.1));
+            padding: 40px;
+            border-radius: 20px;
             margin: 40px 0;
+            border: 2px dashed #e74c3c;
+            text-align: center;
+        }
+
+        .proposal-question h3 {
+            color: #e74c3c;
+            font-size: 2em;
+            margin-bottom: 25px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .proposal-question p {
+            font-size: 1.5em;
+            color: #e74c3c;
+            font-weight: bold;
+            margin: 20px 0;
+            text-align: center !important;
+        }
+
+        .proposal-question .ring-icon {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: spin 3s linear infinite;
+        }
+
+        /* Modal Buttons */
+        .modal-buttons {
             display: flex;
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 30px;
         }
 
-        .btn {
+        .modal-btn {
             padding: 20px 50px;
             font-size: 1.3em;
             border: none;
@@ -190,61 +450,46 @@
             font-weight: bold;
             transition: all 0.3s;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-yes {
+        .modal-btn:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .modal-btn:hover:before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .modal-btn-yes {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
         }
 
-        .btn-yes:hover {
+        .modal-btn-yes:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
         }
 
-        .btn-no {
+        .modal-btn-no {
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             color: #333;
         }
 
-        .btn-no:hover {
+        .modal-btn-no:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(168, 237, 234, 0.6);
-        }
-
-        /* Love Letter Section */
-        .love-letter {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,240,245,0.95));
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 800px;
-            margin: 30px auto;
-            animation: fadeInUp 1s ease-out 0.9s both;
-            border: 2px solid rgba(231, 76, 60, 0.3);
-        }
-
-        .love-letter h2 {
-            color: #e74c3c;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .love-letter p {
-            color: #333;
-            font-size: 1.2em;
-            line-height: 2;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .signature {
-            margin-top: 40px;
-            font-style: italic;
-            color: #666;
-            font-size: 1.3em;
-            text-align: right;
         }
 
         /* Sparkles */
@@ -305,10 +550,10 @@
         }
 
         .music-control.playing {
-            animation: pulse 2s infinite;
+            animation: musicPulse 2s infinite;
         }
 
-        @keyframes pulse {
+        @keyframes musicPulse {
             0%, 100% {
                 box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
             }
@@ -386,7 +631,7 @@
             padding: 60px;
             border-radius: 30px;
             box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-            z-index: 10001;
+            z-index: 10002;
             text-align: center;
             max-width: 90%;
             transition: transform 0.5s;
@@ -430,6 +675,20 @@
             20%, 40%, 60%, 80% { transform: translate(-50%, -50%) rotate(5deg); }
         }
 
+        /* Romantic glow effect */
+        @keyframes romanticGlow {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(231, 76, 60, 0.3);
+            }
+            50% {
+                box-shadow: 0 20px 80px rgba(231, 76, 60, 0.6);
+            }
+        }
+
+        .message-card {
+            animation: fadeInUp 1s ease-out 0.3s both, romanticGlow 3s infinite;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5em;
@@ -437,19 +696,39 @@
             .ring {
                 font-size: 80px;
             }
-            .message-card, .love-letter {
+            .message-card {
                 padding: 30px 20px;
             }
-            .message-card p, .love-letter p {
+            .message-card p {
                 font-size: 1.1em;
             }
-            .button-container {
+            .letter-btn {
+                padding: 20px 40px;
+                font-size: 1.2em;
+            }
+            .modal-content {
+                padding: 30px 20px;
+                max-width: 95%;
+            }
+            .modal-header h2 {
+                font-size: 2em;
+            }
+            .letter-content p {
+                font-size: 1.1em;
+            }
+            .modal-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            .btn {
-                width: 80%;
+            .modal-btn {
+                width: 90%;
                 max-width: 300px;
+            }
+            .proposal-question h3 {
+                font-size: 1.5em;
+            }
+            .proposal-question p {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -462,6 +741,51 @@
             <h2>A Special Question...</h2>
             <p style="font-size: 1.2em; margin: 20px 0;">For someone very special to my heart</p>
             <button class="start-button" onclick="startExperience()">Open My Heart 💕</button>
+        </div>
+    </div>
+
+    <!-- Love Letter Modal -->
+    <div class="modal-overlay" id="letterModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            
+            <div class="modal-header">
+                <div class="envelope-icon">💌</div>
+                <h2>A Letter From My Heart</h2>
+            </div>
+
+            <div class="letter-content">
+                <p class="greeting">My Dearest Love,</p>
+                
+                <p>Words cannot fully capture the depth of my feelings for you, but let me try to paint a picture of my heart...</p>
+                
+                <p>Every day I spend with you is a blessing that I never take for granted. You make me laugh when tears threaten to fall, you lift me up when the world weighs heavy on my shoulders, and you celebrate with me in my happiest moments as if they were your own.</p>
+                
+                <p>You are not just my boyfriend – you are my partner in this beautiful journey of life, my confidant who knows my deepest secrets, my safe harbor in every storm, and my biggest cheerleader who believes in me even when I doubt myself.</p>
+                
+                <p>I love the way your eyes light up when you smile, the way you hold my hand as if you never want to let go, the way you make even the most ordinary moments feel extraordinary, and the way you love me – completely, unconditionally, and beautifully.</p>
+                
+                <p>You've shown me what true love feels like – it's in the little things, the quiet moments, the inside jokes, and the way we can just be ourselves together without any pretense.</p>
+                
+                <p style="color: #e74c3c; font-weight: bold; font-size: 1.3em; text-align: center; margin-top: 30px;">So today, on this special Propose Day, with all my heart and soul...</p>
+            </div>
+
+            <div class="proposal-question">
+                <div class="ring-icon">💍</div>
+                <h3>The Question That Means Everything</h3>
+                <p>Will you continue to be mine forever?</p>
+                <p style="font-size: 1.2em; margin-top: 15px;">Will you keep being the reason I smile, the beat in my heart, and my forever love?</p>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-yes" onclick="yesResponse()">YES! Forever & Always 💕</button>
+                <button class="modal-btn modal-btn-no" onclick="noResponse()">Let me think... 🤔</button>
+            </div>
+
+            <div class="signature">
+                Forever and always yours,<br>
+                With all my love and devotion ❤️
+            </div>
         </div>
     </div>
 
@@ -491,6 +815,7 @@
             <p>I knew my heart had found its home.</p>
             <p class="highlight">You are my best friend, my soulmate, my everything! 💖</p>
             <p>Every moment with you feels like a beautiful dream.</p>
+            <p style="margin-top: 25px; font-size: 1.1em;">You make my world brighter, my heart fuller, and my soul complete.</p>
         </div>
 
         <!-- Photo Section -->
@@ -499,42 +824,33 @@
             <p class="photo-caption">Forever holding your hand 💕</p>
         </div>
 
-        <!-- Love Letter -->
-        <div class="love-letter">
-            <h2>To My Dearest Love 💌</h2>
-            <p>My love,</p>
-            <p>Every day I spend with you is a blessing. You make me laugh when I'm sad, you support me when I'm down, and you celebrate with me in my happiest moments.</p>
-            <p>You are not just my boyfriend, you are my partner in crime, my confidant, my safe place, and my biggest cheerleader.</p>
-            <p>I love the way you look at me, the way you hold my hand, and the way you make every ordinary moment extraordinary.</p>
-            <p class="highlight">So today, on Propose Day, I want to ask you something special...</p>
-            <p style="font-size: 1.4em; text-align: center; margin-top: 30px;">Will you continue to be mine forever? 💍</p>
-            <div class="signature">
-                Forever yours,<br>
-                With all my love ❤️
-            </div>
-        </div>
-
-        <!-- Interactive Buttons -->
-        <div class="button-container">
-            <button class="btn btn-yes" onclick="yesResponse()">YES! Forever & Always 💕</button>
-            <button class="btn btn-no" onclick="noResponse()">Let me think... 🤔</button>
+        <!-- Letter Button -->
+        <div class="letter-button-container">
+            <button class="letter-btn" onclick="openModal()">
+                <span class="icon">💌</span>
+                <span>Read My Love Letter</span>
+                <span class="icon">💌</span>
+            </button>
         </div>
 
         <!-- Additional Message -->
         <div class="message-card" style="margin-top: 50px; animation-delay: 1.2s;">
             <h2 style="color: #e74c3c; margin-bottom: 20px;">💕 Why I Love You 💕</h2>
-            <p>Your smile brightens my darkest days ☀️</p>
-            <p>Your voice is my favorite sound 🎵</p>
-            <p>Your hugs feel like home 🏠</p>
-            <p>Your love completes me 💖</p>
-            <p style="margin-top: 30px;">Thank you for being you, for loving me, and for making my life so beautiful!</p>
+            <p>Your smile brightens my darkest days like the morning sun ☀️</p>
+            <p>Your voice is my favorite melody, the sweetest sound I know 🎵</p>
+            <p>Your hugs feel like home, where I belong and am safe 🏠</p>
+            <p>Your love completes me in ways I never knew possible 💖</p>
+            <p>Your presence makes every moment worth living 🌟</p>
+            <p>Your touch sends butterflies dancing through my soul 🦋</p>
+            <p style="margin-top: 30px; font-size: 1.2em; color: #e74c3c;">Thank you for being you, for loving me unconditionally, and for making my life a beautiful fairy tale!</p>
         </div>
 
         <div class="message-card" style="margin-top: 30px; margin-bottom: 50px; animation-delay: 1.5s;">
             <h2 style="color: #e74c3c; margin-bottom: 20px;">🎵 Our Love Story 🎵</h2>
-            <p style="font-size: 1.4em; font-style: italic; color: #e74c3c;">"In a world of billions, my heart chose you."</p>
-            <p style="margin-top: 30px;">And it will keep choosing you, every single day, for the rest of my life.</p>
-            <p class="highlight" style="font-size: 1.3em; margin-top: 20px;">Happy Propose Day, My Love! 💍❤️</p>
+            <p style="font-size: 1.5em; font-style: italic; color: #e74c3c; font-weight: bold;">"In a world of billions, my heart chose you, and it was the best decision it ever made."</p>
+            <p style="margin-top: 30px; font-size: 1.2em;">And it will keep choosing you, every single day, in every single moment, for the rest of my life and beyond.</p>
+            <p style="margin-top: 25px; font-size: 1.1em;">You and me, together forever, creating our own beautiful story filled with love, laughter, and endless happiness.</p>
+            <p class="highlight" style="font-size: 1.4em; margin-top: 30px;">Happy Propose Day, My Love! 💍❤️✨</p>
         </div>
     </div>
 
@@ -567,6 +883,70 @@
                 sparklesContainer.appendChild(sparkle);
             }
         }
+
+        // Open Modal
+        function openModal() {
+            const modal = document.getElementById('letterModal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            
+            // Create extra hearts when modal opens
+            createFloatingHearts(40);
+        }
+
+        // Close Modal
+        function closeModal() {
+            const modal = document.getElementById('letterModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Create floating hearts on modal open
+        function createFloatingHearts(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = ['💕', '💖', '💗', '💓', '💝', '❤️'][Math.floor(Math.random() * 6)];
+                    heart.style.cssText = `
+                        position: fixed;
+                        left: ${Math.random() * 100}%;
+                        top: 100%;
+                        font-size: ${Math.random() * 30 + 20}px;
+                        pointer-events: none;
+                        z-index: 9999;
+                        animation: floatUp 3s ease-out forwards;
+                    `;
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 50);
+            }
+        }
+
+        // Add CSS for float up animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+            @keyframes sparkleAnim {
+                0% {
+                    opacity: 1;
+                    transform: scale(0) rotate(0deg);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(1.5) translateY(-50px) rotate(180deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
 
         // Music functionality
         const bgMusic = document.getElementById('bgMusic');
@@ -637,14 +1017,16 @@
 
         // Response functions
         function yesResponse() {
+            closeModal();
             createConfetti();
             const popup = document.createElement('div');
             popup.className = 'response-popup';
             popup.innerHTML = `
                 <h2>💕 Yay! 💕</h2>
-                <div style="font-size: 5em; margin: 20px 0;">🎉💍❤️🎊</div>
+                <div style="font-size: 5em; margin: 20px 0;">🎉💍❤️🎊✨</div>
                 <p>You just made me the happiest person alive!</p>
-                <p style="font-size: 1.5em; color: #e74c3c; margin-top: 20px;">I love you so much!</p>
+                <p style="font-size: 1.5em; color: #e74c3c; margin-top: 20px; font-weight: bold;">I love you so much!</p>
+                <p style="font-size: 1.2em; margin-top: 15px;">Forever and always, my love! 💖</p>
                 <p style="font-size: 0.9em; color: #666; margin-top: 30px; cursor: pointer;" onclick="this.parentElement.remove()">Click to close</p>
             `;
             document.body.appendChild(popup);
@@ -660,6 +1042,7 @@
                 <h2 style="color: white; font-size: 2.5em; margin-bottom: 20px;">ERROR!</h2>
                 <p style="font-size: 1.4em; color: white; font-weight: bold; margin: 30px 0;">You can only choose option one! 💕</p>
                 <p style="font-size: 1.1em; color: rgba(255,255,255,0.9); margin: 20px 0;">There's only one correct answer here... 😉</p>
+                <p style="font-size: 1em; color: rgba(255,255,255,0.8); margin: 15px 0;">My heart only knows "YES"! ❤️</p>
                 <button style="
                     background: white;
                     color: #c92a2a;
@@ -684,8 +1067,8 @@
 
         // Confetti effect
         function createConfetti() {
-            const colors = ['#ff6b9d', '#f093fb', '#667eea', '#f5576c', '#a8edea'];
-            for (let i = 0; i < 100; i++) {
+            const colors = ['#ff6b9d', '#f093fb', '#667eea', '#f5576c', '#a8edea', '#ffd700', '#ff69b4'];
+            for (let i = 0; i < 150; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
@@ -695,7 +1078,7 @@
                     confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
                     document.body.appendChild(confetti);
                     setTimeout(() => confetti.remove(), 3000);
-                }, i * 30);
+                }, i * 20);
             }
         }
 
@@ -717,20 +1100,12 @@
             }
         });
 
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes sparkleAnim {
-                0% {
-                    opacity: 1;
-                    transform: scale(0) rotate(0deg);
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(1.5) translateY(-50px) rotate(180deg);
-                }
+        // Close modal when clicking outside
+        document.getElementById('letterModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
             }
-        `;
-        document.head.appendChild(style);
+        });
 
         // Initialize
         createHearts();
