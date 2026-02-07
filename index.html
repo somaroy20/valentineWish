@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Rose Day 🌹</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .rose-container {
+            position: relative;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .rose {
+            font-size: 120px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(-10deg);
+            }
+            75% {
+                transform: rotate(10deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .message p {
+            color: #333;
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b9d;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 0.7;
+            }
+            100% {
+                top: 110%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .petals {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+
+        .petal {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b9d;
+            border-radius: 50% 0 50% 0;
+            animation: petalFall linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes petalFall {
+            0% {
+                top: -10%;
+                transform: rotate(0deg);
+            }
+            100% {
+                top: 110%;
+                transform: rotate(360deg);
+            }
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .rose {
+                font-size: 80px;
+            }
+            .message {
+                padding: 30px 20px;
+            }
+            .message p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Falling Hearts -->
+    <div class="hearts" id="hearts"></div>
+    
+    <!-- Falling Petals -->
+    <div class="petals" id="petals"></div>
+
+    <div class="container">
+        <div class="rose-container">
+            <div class="rose">🌹</div>
+        </div>
+        
+        <h1>Happy Rose Day!</h1>
+        
+        <div class="message">
+            <p>Just like a rose speaks the language of love,</p>
+            <p>I want to tell you how special you are to me.</p>
+            <p class="highlight">You are the most beautiful rose in the garden of my life! 🌹</p>
+            <p>May your day be filled with love, joy, and the sweet fragrance of roses.</p>
+            <p>This Rose Day, I promise to cherish every moment with you.</p>
+            
+            <button class="button" onclick="showSurprise()">Click for a Surprise! 💕</button>
+            
+            <div class="signature">
+                With all my love ❤️
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create falling hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Create falling petals
+        function createPetals() {
+            const petalsContainer = document.getElementById('petals');
+            for (let i = 0; i < 30; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                petal.style.width = (Math.random() * 8 + 5) + 'px';
+                petal.style.height = petal.style.width;
+                petalsContainer.appendChild(petal);
+            }
+        }
+
+        // Surprise message
+        function showSurprise() {
+            const messages = [
+                "You make my world beautiful! 🌹✨",
+                "Every day with you is a blessing! 💕",
+                "You are my forever Valentine! 💖",
+                "Thank you for being my rose! 🌹❤️",
+                "You bloom in my heart always! 🌹💗"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Create surprise popup
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                background: white;
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+                z-index: 1000;
+                text-align: center;
+                font-size: 1.5em;
+                color: #e74c3c;
+                font-weight: bold;
+                transition: transform 0.5s;
+            `;
+            popup.innerHTML = randomMessage + '<br><br><span style="font-size: 0.6em; color: #666; cursor: pointer;">Click anywhere to close</span>';
+            document.body.appendChild(popup);
+            
+            setTimeout(() => {
+                popup.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 10);
+            
+            popup.onclick = function() {
+                popup.style.transform = 'translate(-50%, -50%) scale(0)';
+                setTimeout(() => popup.remove(), 500);
+            };
+        }
+
+        // Initialize animations
+        createHearts();
+        createPetals();
+
+        // Add sparkle effect on mouse move
+        document.addEventListener('mousemove', function(e) {
+            if (Math.random() > 0.9) {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.style.cssText = `
+                    position: absolute;
+                    left: ${e.pageX}px;
+                    top: ${e.pageY}px;
+                    font-size: 20px;
+                    pointer-events: none;
+                    animation: sparkleAnim 1s ease-out forwards;
+                `;
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        });
+
+        // Add sparkle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkleAnim {
+                0% {
+                    opacity: 1;
+                    transform: scale(0) rotate(0deg);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(1.5) rotate(180deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
