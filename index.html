@@ -395,56 +395,83 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;back
     </div>
   </div>
 
+  <!-- Calibration toolbar -->
+  <div id="calib-bar" style="display:none;flex-shrink:0;padding:10px 16px;background:rgba(201,150,46,.1);border-top:1px solid rgba(201,150,46,.25);border-bottom:1px solid rgba(201,150,46,.25);">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+      <div style="font-family:'Tenor Sans',sans-serif;font-size:.65em;letter-spacing:2px;color:var(--gold);text-transform:uppercase;line-height:1.4;">
+        🎯 Calibrate Mode<br>
+        <span style="color:rgba(255,255,255,.4);letter-spacing:1px;">Tap each line when it starts singing</span>
+      </div>
+      <div style="display:flex;gap:6px;">
+        <button onclick="calibSave()" style="background:linear-gradient(135deg,var(--rose),var(--velvet));color:#fff;border:none;padding:7px 14px;border-radius:20px;font-family:'Tenor Sans',sans-serif;font-size:.65em;letter-spacing:1px;cursor:pointer;">SAVE ✓</button>
+        <button onclick="calibCancel()" style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.15);padding:7px 12px;border-radius:20px;font-family:'Tenor Sans',sans-serif;font-size:.65em;cursor:pointer;">Cancel</button>
+      </div>
+    </div>
+    <div id="calib-next" style="margin-top:8px;font-family:'Cormorant Garamond',serif;font-size:.95em;color:var(--blush);font-style:italic;min-height:1.2em;text-align:center;"></div>
+    <div id="calib-progress-wrap" style="margin-top:8px;">
+      <div style="height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;">
+        <div id="calib-prog" style="height:100%;background:var(--gold);width:0%;transition:width .2s;"></div>
+      </div>
+      <div style="font-family:'Tenor Sans',sans-serif;font-size:.6em;color:rgba(255,255,255,.3);text-align:center;margin-top:4px;" id="calib-count">0 / 0 lines tagged</div>
+    </div>
+  </div>
+
+  <!-- Calibrate button (hidden in panel header area) -->
+  <div id="calib-toggle-wrap" style="padding:8px 28px;flex-shrink:0;text-align:right;">
+    <button onclick="startCalib()" id="calib-toggle-btn" style="background:none;border:1px solid rgba(201,150,46,.3);color:rgba(201,150,46,.6);padding:5px 14px;border-radius:20px;font-family:'Tenor Sans',sans-serif;font-size:.62em;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;">
+      ⏱ Fix Timing
+    </button>
+  </div>
+
   <!-- Lyrics scroll -->
   <div class="lp-lyrics" id="lp-lyrics-scroll">
 
     <div class="lyric-section">
       <div class="lyric-section-label">✦ Verse 1 ✦</div>
-      <!-- ⏱ TIMESTAMPS: Edit the data-t values (in seconds) to match your song -->
-      <span class="lyric-line" data-t="0">I used to wonder where my story would go</span>
-      <span class="lyric-line" data-t="5">Searching for a feeling I didn't quite know</span>
-      <span class="lyric-line" data-t="10">But then I saw your face, and the world went still</span>
-      <span class="lyric-line hindi" data-t="15">Ab har raasta tere naam, by my own will</span>
-      <span class="lyric-line" data-t="20">You're the heartbeat in my silence, the sun in my grey</span>
-      <span class="lyric-line" data-t="26">I'm seeing my whole future just a heartbeat away</span>
+      <span class="lyric-line" data-t="0" data-idx="0">I used to wonder where my story would go</span>
+      <span class="lyric-line" data-t="5" data-idx="1">Searching for a feeling I didn't quite know</span>
+      <span class="lyric-line" data-t="10" data-idx="2">But then I saw your face, and the world went still</span>
+      <span class="lyric-line hindi" data-t="15" data-idx="3">Ab har raasta tere naam, by my own will</span>
+      <span class="lyric-line" data-t="20" data-idx="4">You're the heartbeat in my silence, the sun in my grey</span>
+      <span class="lyric-line" data-t="26" data-idx="5">I'm seeing my whole future just a heartbeat away</span>
     </div>
 
     <div class="lyric-section">
       <div class="lyric-section-label">✦ Chorus ✦</div>
-      <span class="lyric-line" data-t="33">Because I've found my love, my life, my soul</span>
-      <span class="lyric-line hindi" data-t="38">Tere bina main adhoora, you make me whole</span>
-      <span class="lyric-line" data-t="43">In every situation, through the thick and the thin</span>
-      <span class="lyric-line hindi" data-t="48">Main tera rahoongi, let the forever begin</span>
-      <span class="lyric-line" data-t="53">Be it the highs or the lows, let the seasons change</span>
-      <span class="lyric-line hindi" data-t="58">Mera pyaar wahi rahega, it will never rearrange</span>
+      <span class="lyric-line" data-t="33" data-idx="6">Because I've found my love, my life, my soul</span>
+      <span class="lyric-line hindi" data-t="38" data-idx="7">Tere bina main adhoora, you make me whole</span>
+      <span class="lyric-line" data-t="43" data-idx="8">In every situation, through the thick and the thin</span>
+      <span class="lyric-line hindi" data-t="48" data-idx="9">Main tera rahoongi, let the forever begin</span>
+      <span class="lyric-line" data-t="53" data-idx="10">Be it the highs or the lows, let the seasons change</span>
+      <span class="lyric-line hindi" data-t="58" data-idx="11">Mera pyaar wahi rahega, it will never rearrange</span>
     </div>
 
     <div class="lyric-section">
       <div class="lyric-section-label">✦ Verse 2 ✦</div>
-      <span class="lyric-line" data-t="66">They say love is a journey, but you are my home</span>
-      <span class="lyric-line hindi" data-t="71">Ab kahin bhi jaaun, I'm never alone</span>
-      <span class="lyric-line hindi" data-t="76">Tera saath ho toh dhoop bhi suhaani lage</span>
-      <span class="lyric-line hindi" data-t="81">Every moment with you ek kahaani lage</span>
-      <span class="lyric-line" data-t="86">I promise to hold you when the world gets loud</span>
-      <span class="lyric-line hindi" data-t="91">Tu hi meri manzil, you're my only crowd</span>
+      <span class="lyric-line" data-t="66" data-idx="12">They say love is a journey, but you are my home</span>
+      <span class="lyric-line hindi" data-t="71" data-idx="13">Ab kahin bhi jaaun, I'm never alone</span>
+      <span class="lyric-line hindi" data-t="76" data-idx="14">Tera saath ho toh dhoop bhi suhaani lage</span>
+      <span class="lyric-line hindi" data-t="81" data-idx="15">Every moment with you ek kahaani lage</span>
+      <span class="lyric-line" data-t="86" data-idx="16">I promise to hold you when the world gets loud</span>
+      <span class="lyric-line hindi" data-t="91" data-idx="17">Tu hi meri manzil, you're my only crowd</span>
     </div>
 
     <div class="lyric-section">
       <div class="lyric-section-label">✦ Bridge ✦</div>
-      <span class="lyric-line" data-t="99">No "ifs" or "buts," no turning back now</span>
-      <span class="lyric-line hindi" data-t="104">Main nibhaaoongi har ek vaada and vow</span>
-      <span class="lyric-line" data-t="109">It's a permanent bond, it's a soul-to-soul tie</span>
-      <span class="lyric-line" data-t="114">Underneath the stars and this infinite sky</span>
-      <span class="lyric-line hindi" data-t="119">Ek chhoti si baat, will you stay by my side?</span>
-      <span class="lyric-line hindi" data-t="124">Is lambe safar mein, be my light and my guide</span>
+      <span class="lyric-line" data-t="99" data-idx="18">No "ifs" or "buts," no turning back now</span>
+      <span class="lyric-line hindi" data-t="104" data-idx="19">Main nibhaaoongi har ek vaada and vow</span>
+      <span class="lyric-line" data-t="109" data-idx="20">It's a permanent bond, it's a soul-to-soul tie</span>
+      <span class="lyric-line" data-t="114" data-idx="21">Underneath the stars and this infinite sky</span>
+      <span class="lyric-line hindi" data-t="119" data-idx="22">Ek chhoti si baat, will you stay by my side?</span>
+      <span class="lyric-line hindi" data-t="124" data-idx="23">Is lambe safar mein, be my light and my guide</span>
     </div>
 
     <div class="lyric-section">
       <div class="lyric-section-label">✦ Outro ✦</div>
-      <span class="lyric-line" data-t="133">So baby, tell me, is your heart mine to stay?</span>
-      <span class="lyric-line hindi" data-t="139">Kya tum rahoge mere Valentine... hamesha ke liye?</span>
-      <span class="lyric-line" data-t="147">Every single day?</span>
-      <span class="lyric-line" data-t="152">Will you be my Valentine forever?</span>
+      <span class="lyric-line" data-t="133" data-idx="24">So baby, tell me, is your heart mine to stay?</span>
+      <span class="lyric-line hindi" data-t="139" data-idx="25">Kya tum rahoge mere Valentine... hamesha ke liye?</span>
+      <span class="lyric-line" data-t="147" data-idx="26">Every single day?</span>
+      <span class="lyric-line" data-t="152" data-idx="27">Will you be my Valentine forever?</span>
     </div>
 
     <div style="height:60px;"></div>
@@ -682,11 +709,24 @@ function toggleMusic(){
 }
 
 /* ══════════════════════════════════════════
-   LYRICS ENGINE
+   LYRICS ENGINE — FIXED SYNC
 ══════════════════════════════════════════ */
 const lyricLines = Array.from(document.querySelectorAll('.lyric-line'));
 let lyricsOpen = false;
 let lastActiveIdx = -1;
+
+// Load saved timestamps from localStorage if available
+(function loadSavedTimestamps(){
+  try {
+    const saved = localStorage.getItem('vday_lyrics_timestamps');
+    if(saved){
+      const ts = JSON.parse(saved);
+      lyricLines.forEach((line, i) => {
+        if(ts[i] !== undefined) line.dataset.t = ts[i];
+      });
+    }
+  } catch(e){}
+})();
 
 function toggleLyrics(){
   const panel = document.getElementById('lyrics-panel');
@@ -701,61 +741,196 @@ function toggleLyrics(){
 function syncLyricsNow(){
   const t = bgm.currentTime;
   let activeIdx = -1;
-  for(let i=0;i<lyricLines.length;i++){
+
+  // Walk backwards from end — find the LAST line whose timestamp <= currentTime
+  // This ensures we never highlight a line before its time
+  for(let i = lyricLines.length - 1; i >= 0; i--){
     const lt = parseFloat(lyricLines[i].dataset.t);
-    const nextT = i+1 < lyricLines.length ? parseFloat(lyricLines[i+1].dataset.t) : Infinity;
-    if(t >= lt && t < nextT){ activeIdx = i; break; }
+    if(t >= lt){
+      activeIdx = i;
+      break;
+    }
   }
+
   if(activeIdx === lastActiveIdx) return;
   lastActiveIdx = activeIdx;
 
-  lyricLines.forEach((line,i)=>{
+  lyricLines.forEach((line, i) => {
     line.classList.remove('active','past');
     if(i === activeIdx) line.classList.add('active');
     else if(i < activeIdx) line.classList.add('past');
   });
 
-  // Auto-scroll active line into view
+  // Auto-scroll active line to center of panel
   if(activeIdx >= 0){
     const activeLine = lyricLines[activeIdx];
     const scroll = document.getElementById('lp-lyrics-scroll');
     const lineTop = activeLine.offsetTop;
-    const scrollCenter = lineTop - scroll.clientHeight/2 + activeLine.clientHeight/2;
-    scroll.scrollTo({top: scrollCenter, behavior:'smooth'});
+    const scrollCenter = lineTop - scroll.clientHeight / 2 + activeLine.clientHeight / 2;
+    scroll.scrollTo({ top: scrollCenter, behavior: 'smooth' });
   }
 }
 
 // Update lyrics + progress bar on timeupdate
-bgm.addEventListener('timeupdate',()=>{
+bgm.addEventListener('timeupdate', () => {
   syncLyricsNow();
-
-  // Update progress bar
   if(bgm.duration){
-    const pct = (bgm.currentTime / bgm.duration)*100;
-    document.getElementById('lp-prog-fill').style.width = pct+'%';
+    const pct = (bgm.currentTime / bgm.duration) * 100;
+    document.getElementById('lp-prog-fill').style.width = pct + '%';
   }
-
-  // Update time display
   document.getElementById('lp-cur-time').textContent = fmtTime(bgm.currentTime);
 });
 
-bgm.addEventListener('loadedmetadata',()=>{
+bgm.addEventListener('loadedmetadata', () => {
   document.getElementById('lp-dur-time').textContent = fmtTime(bgm.duration);
 });
 
 function fmtTime(s){
   if(!s || isNaN(s)) return '0:00';
-  const m = Math.floor(s/60);
-  const sec = Math.floor(s%60);
-  return m+':'+(sec<10?'0':'')+sec;
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
 }
 
 function seekFromBar(e){
   if(!bgm.duration) return;
   const bar = document.getElementById('lp-prog-bar');
   const rect = bar.getBoundingClientRect();
-  const pct = (e.clientX - rect.left)/rect.width;
+  const pct = (e.clientX - rect.left) / rect.width;
   bgm.currentTime = pct * bgm.duration;
+}
+
+/* ══════════════════════════════════════════
+   TAP-TO-CALIBRATE SYSTEM
+   Play the song, tap each line exactly when
+   that line starts singing — saves automatically
+══════════════════════════════════════════ */
+let calibMode = false;
+let calibIdx = 0;
+let calibTimestamps = [];
+
+function startCalib(){
+  if(bgm.paused){
+    alert('▶ Please start the song first, then tap "Fix Timing"!');
+    return;
+  }
+  calibMode = true;
+  calibIdx = 0;
+  calibTimestamps = new Array(lyricLines.length).fill(null);
+
+  document.getElementById('calib-bar').style.display = 'block';
+  document.getElementById('calib-toggle-wrap').style.display = 'none';
+
+  // Make all lines tappable
+  lyricLines.forEach((line, i) => {
+    line.style.cursor = 'pointer';
+    line.style.transition = 'all .2s';
+    line.addEventListener('click', calibTap);
+    line.style.opacity = i === 0 ? '1' : '0.35';
+    line.style.borderLeft = '3px solid transparent';
+  });
+
+  updateCalibUI();
+}
+
+function calibTap(e){
+  if(!calibMode) return;
+  const line = e.currentTarget;
+  const idx = parseInt(line.dataset.idx);
+
+  // Only allow tapping the next expected line (or any line for flexibility)
+  const t = bgm.currentTime;
+  calibTimestamps[idx] = parseFloat(t.toFixed(2));
+
+  // Visual feedback — flash gold
+  line.style.borderLeft = '3px solid var(--gold)';
+  line.style.color = 'var(--gold)';
+  line.style.opacity = '0.7';
+
+  setTimeout(() => {
+    line.style.borderLeft = '3px solid var(--rose)';
+    line.style.color = 'rgba(255,255,255,0.5)';
+  }, 300);
+
+  // Advance calibIdx to next untagged
+  calibIdx = idx + 1;
+  updateCalibUI();
+
+  // If all done, auto-save
+  const tagged = calibTimestamps.filter(x => x !== null).length;
+  if(tagged === lyricLines.length) setTimeout(calibSave, 400);
+}
+
+function updateCalibUI(){
+  const total = lyricLines.length;
+  const tagged = calibTimestamps.filter(x => x !== null).length;
+
+  document.getElementById('calib-count').textContent = tagged + ' / ' + total + ' lines tagged';
+  document.getElementById('calib-prog').style.width = (tagged / total * 100) + '%';
+
+  // Highlight next line to tap
+  lyricLines.forEach((line, i) => {
+    if(i === calibIdx){
+      line.style.opacity = '1';
+      line.style.color = '#fff';
+      line.style.borderLeft = '3px solid var(--gold)';
+      // Scroll into view
+      const scroll = document.getElementById('lp-lyrics-scroll');
+      const center = line.offsetTop - scroll.clientHeight/2 + line.clientHeight/2;
+      scroll.scrollTo({ top: center, behavior: 'smooth' });
+      document.getElementById('calib-next').textContent =
+        '👆 Tap when: "' + line.textContent.trim().slice(0,38) + (line.textContent.length > 38 ? '…' : '') + '"';
+    }
+  });
+
+  if(calibIdx >= total){
+    document.getElementById('calib-next').textContent = '✅ All lines tagged! Hit SAVE';
+  }
+}
+
+function calibSave(){
+  // Apply new timestamps to lines
+  lyricLines.forEach((line, i) => {
+    if(calibTimestamps[i] !== null){
+      line.dataset.t = calibTimestamps[i];
+    }
+  });
+
+  // Persist to localStorage
+  try {
+    const ts = lyricLines.map(l => parseFloat(l.dataset.t));
+    localStorage.setItem('vday_lyrics_timestamps', JSON.stringify(ts));
+  } catch(e){}
+
+  calibCleanup();
+  lastActiveIdx = -1; // Force re-sync
+  syncLyricsNow();
+
+  // Brief success flash
+  const bar = document.getElementById('calib-bar');
+  bar.innerHTML = '<div style="text-align:center;padding:10px;font-family:\'Dancing Script\',cursive;font-size:1.1em;color:var(--gold);">💖 Timing saved perfectly!</div>';
+  setTimeout(() => {
+    bar.style.display = 'none';
+    bar.innerHTML = ''; // Reset for next use — re-inject original HTML
+    document.getElementById('calib-toggle-wrap').style.display = '';
+  }, 1800);
+}
+
+function calibCancel(){
+  calibCleanup();
+  document.getElementById('calib-bar').style.display = 'none';
+  document.getElementById('calib-toggle-wrap').style.display = '';
+}
+
+function calibCleanup(){
+  calibMode = false;
+  lyricLines.forEach(line => {
+    line.style.cursor = '';
+    line.style.opacity = '';
+    line.style.color = '';
+    line.style.borderLeft = '';
+    line.removeEventListener('click', calibTap);
+  });
 }
 
 /* ══════════════════════════════════════════
