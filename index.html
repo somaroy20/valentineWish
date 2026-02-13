@@ -552,19 +552,25 @@ document.addEventListener('click',e=>{
 });
 
 /* SCROLLING STRIP — duplicate for seamless loop */
+// ✏️ REPLACE: put your image filenames and captions here
 const stripData=[
-  {seed:'strip1',cap:'Us 💕'},{seed:'strip2',cap:'Always 💖'},
-  {seed:'strip3',cap:'Forever 🌹'},{seed:'strip4',cap:'My love 💝'},
-  {seed:'strip5',cap:'Together ✨'},{seed:'strip6',cap:'My heart 💗'},
-  {seed:'strip7',cap:'Memories 💋'},{seed:'strip8',cap:'Our story 🌸'},
-  {seed:'strip9',cap:'You & me 💞'},{seed:'strip10',cap:'Adore you 💖'},
+  {src:'1.jpeg', cap:'Us 💕'},
+  {src:'2.jpeg', cap:'Always 💖'},
+  {src:'3.jpeg', cap:'Forever 🌹'},
+  {src:'4.jpeg', cap:'My love 💝'},
+  {src:'5.jpeg', cap:'Together ✨'},
+  {src:'6.jpeg', cap:'My heart 💗'},
+  {src:'7.jpeg', cap:'Memories 💋'},
+  {src:'8.jpeg', cap:'Our story 🌸'},
+  {src:'9.jpeg', cap:'You & me 💞'},
+  {src:'10.jpeg',cap:'Adore you 💖'},
 ];
 (function buildStrip(){
   const t=document.getElementById('strip');
   [...stripData,...stripData].forEach(p=>{
     const d=document.createElement('div');
     d.className='s-photo';
-    d.innerHTML=`<img src="https://picsum.photos/seed/${p.seed}x/420/310" alt="${p.cap}" loading="lazy"/>`;
+    d.innerHTML=`<img src="${p.src}" alt="${p.cap}" loading="lazy"/>`;
     d.onclick=()=>burst(window.innerWidth/2,window.innerHeight/2,14);
     t.appendChild(d);
   });
