@@ -180,10 +180,93 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;back
 .pop-btn:hover{transform:translateY(-3px) scale(1.07);}
 
 /* ════ MUSIC BUTTON ════ */
-#mbn{position:fixed;bottom:32px;right:32px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--velvet));border:none;font-size:26px;cursor:pointer;box-shadow:0 8px 28px rgba(232,49,90,.55);z-index:10000;display:flex;align-items:center;justify-content:center;transition:all .3s;}
+#mbn{position:fixed;bottom:32px;right:32px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--velvet));border:none;font-size:26px;cursor:pointer;box-shadow:0 8px 28px rgba(232,49,90,.55);z-index:10000;display:none;align-items:center;justify-content:justify-content;transition:all .3s;}
 #mbn:hover{transform:scale(1.15) rotate(15deg);}
 #mbn.playing{animation:mbnPulse 1.5s ease-in-out infinite;}
 @keyframes mbnPulse{0%,100%{box-shadow:0 8px 28px rgba(232,49,90,.55);}50%{box-shadow:0 8px 48px rgba(232,49,90,.9),0 0 60px rgba(232,49,90,.35);}}
+
+/* ════ INLINE MUSIC PLAYER ════ */
+.music-player-wrap{
+  position:relative;z-index:2;
+  padding:0 6% 60px;
+  background:linear-gradient(180deg,#0e0205 0%,#140309 100%);
+  display:flex;justify-content:center;
+}
+.music-player{
+  display:flex;align-items:center;gap:24px;
+  background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(232,49,90,.09));
+  border:1px solid rgba(232,49,90,.28);
+  border-radius:24px;
+  padding:24px 32px;
+  max-width:560px;width:100%;
+  box-shadow:0 16px 60px rgba(232,49,90,.15);
+  backdrop-filter:blur(8px);
+}
+.mp-vinyl{
+  width:76px;height:76px;flex-shrink:0;
+  border-radius:50%;
+  background:radial-gradient(circle at 38% 38%,#3a0b1a,#0e0205);
+  border:3px solid rgba(232,49,90,.4);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 28px rgba(232,49,90,.3);
+  transition:all .4s;
+}
+.mp-vinyl.spinning{
+  animation:spin 3s linear infinite;
+  box-shadow:0 0 38px rgba(232,49,90,.6);
+  border-color:var(--rose);
+}
+.mp-vinyl-inner{font-size:1.8em;}
+.mp-info{flex:1;min-width:0;}
+.mp-song-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.1em;font-style:italic;
+  color:var(--cream);margin-bottom:3px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.mp-artist{
+  font-family:'Tenor Sans',sans-serif;
+  font-size:.65em;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+}
+.mp-controls{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.mp-btn{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.6);
+  width:34px;height:34px;border-radius:50%;
+  font-size:.9em;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s;
+}
+.mp-btn:hover{background:rgba(232,49,90,.3);border-color:var(--rose);color:#fff;transform:scale(1.1);}
+.mp-play-btn{
+  width:46px;height:46px;
+  background:linear-gradient(135deg,var(--rose),var(--velvet));
+  border:none;border-radius:50%;
+  color:#fff;font-size:1.1em;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 22px rgba(232,49,90,.5);
+  transition:all .3s;
+}
+.mp-play-btn:hover{transform:scale(1.12);box-shadow:0 8px 30px rgba(232,49,90,.7);}
+.mp-seek-wrap{display:flex;align-items:center;gap:8px;}
+.mp-time{
+  font-family:'Tenor Sans',sans-serif;
+  font-size:.62em;letter-spacing:1px;
+  color:rgba(255,255,255,.35);
+  white-space:nowrap;min-width:30px;
+}
+.mp-seek{
+  flex:1;height:4px;background:rgba(255,255,255,.1);
+  border-radius:2px;cursor:pointer;position:relative;overflow:hidden;
+}
+.mp-seek-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--rose),var(--gold));
+  border-radius:2px;pointer-events:none;
+  transition:width .25s linear;
+}
 
 /* ════ LYRICS PANEL ════ */
 #lyrics-panel{
@@ -428,7 +511,7 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;back
 
     <div class="lyric-section">
       <div class="lyric-section-label">✦ Verse 1 ✦</div>
-      <span class="lyric-line" data-t="0" data-idx="0">I used to wonder where my story would go</span>
+      <span class="lyric-line" data-t="9999" data-idx="0">I used to wonder where my story would go</span>
       <span class="lyric-line" data-t="5" data-idx="1">Searching for a feeling I didn't quite know</span>
       <span class="lyric-line" data-t="10" data-idx="2">But then I saw your face, and the world went still</span>
       <span class="lyric-line hindi" data-t="15" data-idx="3">Ab har raasta tere naam, by my own will</span>
@@ -498,6 +581,32 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;back
   </div>
   <div class="h-scroll">↓ scroll for our story ↓</div>
 </section>
+
+<!-- ══════ MUSIC PLAYER ══════ -->
+<div class="music-player-wrap">
+  <div class="music-player">
+    <div class="mp-vinyl" id="mp-vinyl">
+      <div class="mp-vinyl-inner">🎵</div>
+    </div>
+    <div class="mp-info">
+      <div class="mp-song-name">My Valentine Song 💕</div>
+      <div class="mp-artist">Soma for Rohit · Original</div>
+      <div class="mp-controls">
+        <button class="mp-btn" onclick="bgm.currentTime=Math.max(0,bgm.currentTime-10)" title="Rewind 10s">⏮</button>
+        <button class="mp-play-btn" id="mp-play-btn" onclick="toggleMusic()">▶</button>
+        <button class="mp-btn" onclick="bgm.currentTime=Math.min(bgm.duration||999,bgm.currentTime+10)" title="Skip 10s">⏭</button>
+        <button class="mp-btn" onclick="toggleLyrics()" title="Show Lyrics">🎶</button>
+      </div>
+      <div class="mp-seek-wrap">
+        <span class="mp-time" id="mp-cur">0:00</span>
+        <div class="mp-seek" id="mp-seek" onclick="seekFromMpBar(event)">
+          <div class="mp-seek-fill" id="mp-seek-fill"></div>
+        </div>
+        <span class="mp-time" id="mp-dur">0:00</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ══════ TIMELINE ══════ -->
 <section class="sec story-sec">
@@ -697,11 +806,21 @@ bgm.addEventListener('play',()=>{
   mbn.classList.add('playing');
   document.body.classList.add('playing-music');
   document.getElementById('lyrics-btn').classList.add('visible');
+  // Inline player
+  const pb = document.getElementById('mp-play-btn');
+  if(pb) pb.textContent = '⏸';
+  const v = document.getElementById('mp-vinyl');
+  if(v) v.classList.add('spinning');
 });
 bgm.addEventListener('pause',()=>{
   mbn.textContent='🔇';
   mbn.classList.remove('playing');
   document.body.classList.remove('playing-music');
+  // Inline player
+  const pb = document.getElementById('mp-play-btn');
+  if(pb) pb.textContent = '▶';
+  const v = document.getElementById('mp-vinyl');
+  if(v) v.classList.remove('spinning');
 });
 
 function toggleMusic(){
@@ -777,12 +896,21 @@ bgm.addEventListener('timeupdate', () => {
   if(bgm.duration){
     const pct = (bgm.currentTime / bgm.duration) * 100;
     document.getElementById('lp-prog-fill').style.width = pct + '%';
+    // Inline player bar
+    const mpFill = document.getElementById('mp-seek-fill');
+    if(mpFill) mpFill.style.width = pct + '%';
   }
-  document.getElementById('lp-cur-time').textContent = fmtTime(bgm.currentTime);
+  const t = fmtTime(bgm.currentTime);
+  document.getElementById('lp-cur-time').textContent = t;
+  const mpCur = document.getElementById('mp-cur');
+  if(mpCur) mpCur.textContent = t;
 });
 
 bgm.addEventListener('loadedmetadata', () => {
-  document.getElementById('lp-dur-time').textContent = fmtTime(bgm.duration);
+  const d = fmtTime(bgm.duration);
+  document.getElementById('lp-dur-time').textContent = d;
+  const mpDur = document.getElementById('mp-dur');
+  if(mpDur) mpDur.textContent = d;
 });
 
 function fmtTime(s){
@@ -797,6 +925,14 @@ function seekFromBar(e){
   const bar = document.getElementById('lp-prog-bar');
   const rect = bar.getBoundingClientRect();
   const pct = (e.clientX - rect.left) / rect.width;
+  bgm.currentTime = pct * bgm.duration;
+}
+
+function seekFromMpBar(e){
+  if(!bgm.duration) return;
+  const bar = document.getElementById('mp-seek');
+  const rect = bar.getBoundingClientRect();
+  const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
   bgm.currentTime = pct * bgm.duration;
 }
 
