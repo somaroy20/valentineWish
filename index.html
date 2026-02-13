@@ -11,7 +11,7 @@
   --deep:#120308; --ink:#1e0510; --gold:#c9962e;
   --velvet:#6b0f2e; --soft:#fde8ec;
 }
-*{margin:0;padding:0;box-sizing:border-box;}f
+*{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:var(--deep);}
@@ -53,7 +53,6 @@ body{cursor:none;font-family:'Cormorant Garamond',serif;background:var(--deep);c
     radial-gradient(ellipse 38% 30% at 88% 18%,rgba(201,150,46,.18) 0%,transparent 55%),
     linear-gradient(155deg,#0d0205 0%,#1a040c 45%,#0e0107 100%);
 }
-/* grain */
 .hbg::after{content:'';position:absolute;inset:0;opacity:.55;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");}
 .rings{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;}
@@ -97,27 +96,10 @@ body{cursor:none;font-family:'Cormorant Garamond',serif;background:var(--deep);c
 /* ════ PHOTO GALLERY ════ */
 .gallery-sec{background:linear-gradient(180deg,#140309 0%,#080102 55%,#140309 100%);}
 .gal-intro{text-align:center;max-width:580px;margin:0 auto 70px;font-size:1.2em;line-height:1.9;color:rgba(255,255,255,.55);font-style:italic;}
-
-/* Photo wall masonry */
-.photo-wall{
-  max-width:1180px;margin:0 auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  grid-auto-rows:260px;
-  gap:22px;
-}
+.photo-wall{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:260px;gap:22px;}
 .p-big{grid-column:span 2;grid-row:span 2;}
 .p-tall{grid-row:span 2;}
-
-.polaroid{
-  background:#1a0810;border-radius:16px;overflow:hidden;
-  position:relative;cursor:pointer;
-  border:1px solid rgba(255,255,255,.07);
-  box-shadow:0 14px 45px rgba(0,0,0,.55);
-  transition:all .5s cubic-bezier(.23,1,.32,1);
-  transform:rotate(var(--rot,0deg));
-  height:100%;
-}
+.polaroid{background:#1a0810;border-radius:16px;overflow:hidden;position:relative;cursor:pointer;border:1px solid rgba(255,255,255,.07);box-shadow:0 14px 45px rgba(0,0,0,.55);transition:all .5s cubic-bezier(.23,1,.32,1);transform:rotate(var(--rot,0deg));height:100%;}
 .polaroid:hover{transform:rotate(0deg) scale(1.04) translateY(-10px);box-shadow:0 32px 85px rgba(232,49,90,.38);border-color:rgba(232,49,90,.55);z-index:10;}
 .polaroid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.23,1,.32,1);filter:saturate(.82) contrast(1.06);}
 .polaroid:hover img{transform:scale(1.09);filter:saturate(1.15) contrast(1.06);}
@@ -127,8 +109,6 @@ body{cursor:none;font-family:'Cormorant Garamond',serif;background:var(--deep);c
 .p-dt{font-family:'Tenor Sans',sans-serif;font-size:.7em;letter-spacing:3px;color:var(--gold);text-transform:uppercase;}
 .p-badge{position:absolute;top:14px;right:14px;width:36px;height:36px;background:rgba(232,49,90,.88);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1em;opacity:0;transform:scale(0);transition:all .3s .1s;}
 .polaroid:hover .p-badge{opacity:1;transform:scale(1);}
-
-/* Photo num label */
 .p-num-tag{position:absolute;top:12px;left:14px;font-family:'Tenor Sans',sans-serif;font-size:.68em;letter-spacing:2px;color:rgba(255,255,255,.5);background:rgba(0,0,0,.45);padding:4px 10px;border-radius:20px;text-transform:uppercase;}
 
 /* ════ SCROLLING STRIP ════ */
@@ -142,12 +122,7 @@ body{cursor:none;font-family:'Cormorant Garamond',serif;background:var(--deep);c
 .s-photo:hover img{filter:saturate(1.2) contrast(1.08);}
 
 /* ════ PROMISES ════ */
-.promise-sec{
-  background:
-    radial-gradient(ellipse at 0% 50%,rgba(107,15,46,.38) 0%,transparent 55%),
-    radial-gradient(ellipse at 100% 50%,rgba(232,49,90,.14) 0%,transparent 55%),
-    linear-gradient(180deg,#0e0205 0%,#140309 100%);
-}
+.promise-sec{background:radial-gradient(ellipse at 0% 50%,rgba(107,15,46,.38) 0%,transparent 55%),radial-gradient(ellipse at 100% 50%,rgba(232,49,90,.14) 0%,transparent 55%),linear-gradient(180deg,#0e0205 0%,#140309 100%);}
 .p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px;max-width:1100px;margin:0 auto;}
 .pc{background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(232,49,90,.07));border:1px solid rgba(232,49,90,.18);border-radius:22px;padding:38px 32px;position:relative;overflow:hidden;transition:all .4s cubic-bezier(.23,1,.32,1);}
 .pc::after{content:'';position:absolute;inset:0;border-radius:22px;background:linear-gradient(135deg,rgba(232,49,90,.12),transparent);opacity:0;transition:opacity .4s;}
@@ -160,11 +135,7 @@ body{cursor:none;font-family:'Cormorant Garamond',serif;background:var(--deep);c
 .pc-text{font-size:1.05em;line-height:1.85;color:rgba(255,255,255,.63);}
 
 /* ════ LOVE LETTER ════ */
-.letter-sec{
-  background:
-    radial-gradient(ellipse at 50% 0%,rgba(232,49,90,.2) 0%,transparent 55%),
-    linear-gradient(180deg,#140309 0%,#0e0205 100%);
-}
+.letter-sec{background:radial-gradient(ellipse at 50% 0%,rgba(232,49,90,.2) 0%,transparent 55%),linear-gradient(180deg,#140309 0%,#0e0205 100%);}
 .ltr-wrap{max-width:760px;margin:0 auto;}
 .ltr-card{background:linear-gradient(155deg,rgba(255,255,255,.04),rgba(232,49,90,.06));border:1px solid rgba(232,49,90,.25);border-radius:28px;padding:65px 62px;position:relative;}
 .ltr-card::before{content:'❝';position:absolute;top:-14px;left:45px;font-size:5em;color:var(--rose);opacity:.24;font-family:'Playfair Display',serif;line-height:1;}
@@ -176,9 +147,7 @@ body{cursor:none;font-family:'Cormorant Garamond',serif;background:var(--deep);c
 .seal{width:88px;height:88px;margin:42px auto 0;background:radial-gradient(circle at 40% 40%,#e8315a,#6b0f2e);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5em;box-shadow:0 8px 32px rgba(232,49,90,.58);animation:spin 8s linear infinite;}
 
 /* ════ FOOTER ════ */
-footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
-  background:linear-gradient(180deg,#0a0203 0%,var(--deep) 100%);
-  border-top:1px solid rgba(232,49,90,.12);}
+footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;background:linear-gradient(180deg,#0a0203 0%,var(--deep) 100%);border-top:1px solid rgba(232,49,90,.12);}
 .ft-heart{font-size:3.8em;display:block;margin-bottom:22px;animation:throb 1.6s ease-in-out infinite;filter:drop-shadow(0 0 28px rgba(232,49,90,.75));}
 .ft-title{font-family:'Playfair Display',serif;font-size:clamp(1.9em,4vw,3.2em);color:var(--rose);font-style:italic;margin-bottom:12px;}
 .ft-quote{font-family:'Dancing Script',cursive;font-size:1.55em;color:var(--blush);margin-bottom:38px;opacity:.82;}
@@ -210,9 +179,152 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
 .pop-btn{background:linear-gradient(135deg,var(--rose),var(--velvet));color:#fff;border:none;padding:15px 44px;border-radius:50px;font-family:'Dancing Script',cursive;font-size:1.25em;cursor:pointer;box-shadow:0 8px 28px rgba(232,49,90,.45);transition:all .3s;}
 .pop-btn:hover{transform:translateY(-3px) scale(1.07);}
 
-/* ════ MUSIC ════ */
+/* ════ MUSIC BUTTON ════ */
 #mbn{position:fixed;bottom:32px;right:32px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--velvet));border:none;font-size:26px;cursor:pointer;box-shadow:0 8px 28px rgba(232,49,90,.55);z-index:10000;display:flex;align-items:center;justify-content:center;transition:all .3s;}
 #mbn:hover{transform:scale(1.15) rotate(15deg);}
+#mbn.playing{animation:mbnPulse 1.5s ease-in-out infinite;}
+@keyframes mbnPulse{0%,100%{box-shadow:0 8px 28px rgba(232,49,90,.55);}50%{box-shadow:0 8px 48px rgba(232,49,90,.9),0 0 60px rgba(232,49,90,.35);}}
+
+/* ════ LYRICS PANEL ════ */
+#lyrics-panel{
+  position:fixed;
+  left:0; top:0; bottom:0;
+  width:360px;
+  background:linear-gradient(180deg,rgba(10,1,5,.97) 0%,rgba(20,3,9,.98) 100%);
+  border-right:1px solid rgba(232,49,90,.2);
+  z-index:9998;
+  display:flex;
+  flex-direction:column;
+  transform:translateX(-100%);
+  transition:transform .6s cubic-bezier(.23,1,.32,1);
+  box-shadow:8px 0 60px rgba(0,0,0,.6);
+  backdrop-filter:blur(10px);
+}
+#lyrics-panel.open{transform:translateX(0);}
+
+.lp-header{
+  padding:28px 28px 20px;
+  border-bottom:1px solid rgba(232,49,90,.15);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-shrink:0;
+}
+.lp-song-info{flex:1;}
+.lp-title{font-family:'Playfair Display',serif;font-size:1.25em;color:var(--cream);font-style:italic;margin-bottom:4px;}
+.lp-artist{font-family:'Tenor Sans',sans-serif;font-size:.72em;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.lp-close{background:none;border:none;font-size:1.5em;color:rgba(255,255,255,.3);cursor:pointer;transition:color .3s,transform .3s;padding:4px;}
+.lp-close:hover{color:var(--rose);transform:rotate(90deg);}
+
+/* Visualizer bars */
+.lp-viz{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  gap:4px;
+  height:38px;
+  padding:0 28px;
+  margin:16px 0 8px;
+  flex-shrink:0;
+}
+.viz-bar{
+  width:4px;
+  border-radius:2px;
+  background:linear-gradient(180deg,var(--rose),var(--velvet));
+  opacity:.7;
+  transform-origin:bottom;
+}
+.playing-music .viz-bar{animation:vbar var(--dur,.6s) ease-in-out infinite alternate;}
+@keyframes vbar{from{height:4px;opacity:.4;}to{height:var(--h,28px);opacity:1;}}
+
+/* Progress bar inside panel */
+.lp-progress-wrap{padding:0 28px;margin-bottom:10px;flex-shrink:0;}
+.lp-prog-bar{height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;cursor:pointer;}
+.lp-prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--rose),var(--gold));border-radius:2px;transition:width .3s linear;}
+.lp-time-row{display:flex;justify-content:space-between;margin-top:6px;font-family:'Tenor Sans',sans-serif;font-size:.65em;letter-spacing:2px;color:rgba(255,255,255,.3);}
+
+/* Lyrics scroll container */
+.lp-lyrics{
+  flex:1;
+  overflow-y:auto;
+  padding:10px 0 30px;
+  scroll-behavior:smooth;
+}
+.lp-lyrics::-webkit-scrollbar{width:3px;}
+.lp-lyrics::-webkit-scrollbar-thumb{background:rgba(232,49,90,.3);border-radius:2px;}
+
+.lyric-section{margin-bottom:6px;}
+.lyric-section-label{
+  font-family:'Tenor Sans',sans-serif;
+  font-size:.6em;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(201,150,46,.5);
+  text-align:center;
+  padding:18px 28px 6px;
+}
+.lyric-line{
+  display:block;
+  padding:10px 28px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.08em;
+  line-height:1.65;
+  color:rgba(255,255,255,.28);
+  transition:all .5s cubic-bezier(.23,1,.32,1);
+  border-left:3px solid transparent;
+  cursor:default;
+}
+.lyric-line.active{
+  color:#fff;
+  font-size:1.2em;
+  border-left-color:var(--rose);
+  background:linear-gradient(90deg,rgba(232,49,90,.12),transparent);
+  text-shadow:0 0 28px rgba(232,49,90,.45);
+  padding-left:32px;
+}
+.lyric-line.past{color:rgba(255,255,255,.42);}
+.lyric-line.hindi{font-style:italic;color:rgba(247,168,184,.28);}
+.lyric-line.hindi.active{color:var(--blush);}
+.lyric-line.hindi.past{color:rgba(247,168,184,.4);}
+
+/* Open lyrics button — pulsing note icon beside music button */
+#lyrics-btn{
+  position:fixed;
+  bottom:110px;
+  right:32px;
+  width:52px;height:52px;
+  border-radius:50%;
+  background:linear-gradient(135deg,rgba(232,49,90,.25),rgba(107,15,46,.6));
+  border:1px solid rgba(232,49,90,.45);
+  font-size:20px;
+  cursor:pointer;
+  z-index:10000;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .4s cubic-bezier(.23,1,.32,1);
+  box-shadow:0 6px 22px rgba(232,49,90,.3);
+  opacity:0;
+  transform:scale(0) translateY(10px);
+}
+#lyrics-btn.visible{opacity:1;transform:scale(1) translateY(0);}
+#lyrics-btn:hover{transform:scale(1.15);box-shadow:0 8px 32px rgba(232,49,90,.55);}
+#lyrics-btn.active-btn{background:linear-gradient(135deg,var(--rose),var(--velvet));border-color:transparent;}
+.lyrics-btn-tooltip{
+  position:absolute;
+  right:62px;
+  white-space:nowrap;
+  font-family:'Tenor Sans',sans-serif;
+  font-size:.7em;
+  letter-spacing:2px;
+  color:rgba(255,255,255,.6);
+  background:rgba(10,1,5,.9);
+  padding:5px 12px;
+  border-radius:20px;
+  border:1px solid rgba(232,49,90,.25);
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .3s;
+}
+#lyrics-btn:hover .lyrics-btn-tooltip{opacity:1;}
 
 /* confetti */
 .conf{position:fixed;pointer-events:none;z-index:200;animation:cfall 3.5s ease-out forwards;}
@@ -227,11 +339,13 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
   .tl-dot{left:14px;top:22px;}
   .tl-box{width:100%;}
   .ltr-card{padding:45px 30px;}
+  #lyrics-panel{width:300px;}
 }
 @media(max-width:580px){
   .photo-wall{grid-template-columns:1fr;grid-auto-rows:250px;}
   .p-big,.p-tall{grid-column:span 1;grid-row:span 1;}
   .p-grid{grid-template-columns:1fr;}
+  #lyrics-panel{width:100%;border-right:none;}
 }
 </style>
 </head>
@@ -251,6 +365,92 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
 <audio id="bgm" loop preload="auto"></audio>
 <button id="mbn" onclick="toggleMusic()">🎵</button>
 
+<!-- LYRICS BUTTON -->
+<button id="lyrics-btn" onclick="toggleLyrics()" title="Show Lyrics">
+  🎶
+  <span class="lyrics-btn-tooltip">Our Song Lyrics</span>
+</button>
+
+<!-- ════ LYRICS PANEL ════ -->
+<div id="lyrics-panel">
+  <div class="lp-header">
+    <div class="lp-song-info">
+      <div class="lp-title">My Valentine Song 💕</div>
+      <div class="lp-artist">Written with love · Soma for Rohit</div>
+    </div>
+    <button class="lp-close" onclick="toggleLyrics()">✕</button>
+  </div>
+
+  <!-- Visualizer -->
+  <div class="lp-viz" id="lp-viz"></div>
+
+  <!-- Progress -->
+  <div class="lp-progress-wrap">
+    <div class="lp-prog-bar" id="lp-prog-bar" onclick="seekFromBar(event)">
+      <div class="lp-prog-fill" id="lp-prog-fill"></div>
+    </div>
+    <div class="lp-time-row">
+      <span id="lp-cur-time">0:00</span>
+      <span id="lp-dur-time">0:00</span>
+    </div>
+  </div>
+
+  <!-- Lyrics scroll -->
+  <div class="lp-lyrics" id="lp-lyrics-scroll">
+
+    <div class="lyric-section">
+      <div class="lyric-section-label">✦ Verse 1 ✦</div>
+      <!-- ⏱ TIMESTAMPS: Edit the data-t values (in seconds) to match your song -->
+      <span class="lyric-line" data-t="0">I used to wonder where my story would go</span>
+      <span class="lyric-line" data-t="5">Searching for a feeling I didn't quite know</span>
+      <span class="lyric-line" data-t="10">But then I saw your face, and the world went still</span>
+      <span class="lyric-line hindi" data-t="15">Ab har raasta tere naam, by my own will</span>
+      <span class="lyric-line" data-t="20">You're the heartbeat in my silence, the sun in my grey</span>
+      <span class="lyric-line" data-t="26">I'm seeing my whole future just a heartbeat away</span>
+    </div>
+
+    <div class="lyric-section">
+      <div class="lyric-section-label">✦ Chorus ✦</div>
+      <span class="lyric-line" data-t="33">Because I've found my love, my life, my soul</span>
+      <span class="lyric-line hindi" data-t="38">Tere bina main adhoora, you make me whole</span>
+      <span class="lyric-line" data-t="43">In every situation, through the thick and the thin</span>
+      <span class="lyric-line hindi" data-t="48">Main tera rahoongi, let the forever begin</span>
+      <span class="lyric-line" data-t="53">Be it the highs or the lows, let the seasons change</span>
+      <span class="lyric-line hindi" data-t="58">Mera pyaar wahi rahega, it will never rearrange</span>
+    </div>
+
+    <div class="lyric-section">
+      <div class="lyric-section-label">✦ Verse 2 ✦</div>
+      <span class="lyric-line" data-t="66">They say love is a journey, but you are my home</span>
+      <span class="lyric-line hindi" data-t="71">Ab kahin bhi jaaun, I'm never alone</span>
+      <span class="lyric-line hindi" data-t="76">Tera saath ho toh dhoop bhi suhaani lage</span>
+      <span class="lyric-line hindi" data-t="81">Every moment with you ek kahaani lage</span>
+      <span class="lyric-line" data-t="86">I promise to hold you when the world gets loud</span>
+      <span class="lyric-line hindi" data-t="91">Tu hi meri manzil, you're my only crowd</span>
+    </div>
+
+    <div class="lyric-section">
+      <div class="lyric-section-label">✦ Bridge ✦</div>
+      <span class="lyric-line" data-t="99">No "ifs" or "buts," no turning back now</span>
+      <span class="lyric-line hindi" data-t="104">Main nibhaaoongi har ek vaada and vow</span>
+      <span class="lyric-line" data-t="109">It's a permanent bond, it's a soul-to-soul tie</span>
+      <span class="lyric-line" data-t="114">Underneath the stars and this infinite sky</span>
+      <span class="lyric-line hindi" data-t="119">Ek chhoti si baat, will you stay by my side?</span>
+      <span class="lyric-line hindi" data-t="124">Is lambe safar mein, be my light and my guide</span>
+    </div>
+
+    <div class="lyric-section">
+      <div class="lyric-section-label">✦ Outro ✦</div>
+      <span class="lyric-line" data-t="133">So baby, tell me, is your heart mine to stay?</span>
+      <span class="lyric-line hindi" data-t="139">Kya tum rahoge mere Valentine... hamesha ke liye?</span>
+      <span class="lyric-line" data-t="147">Every single day?</span>
+      <span class="lyric-line" data-t="152">Will you be my Valentine forever?</span>
+    </div>
+
+    <div style="height:60px;"></div>
+  </div>
+</div>
+
 <!-- ══════ HERO ══════ -->
 <section class="hero">
   <div class="hbg">
@@ -265,7 +465,6 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
     <p class="h-sub">To the one who owns every piece of my heart</p>
     <div class="h-pill">
       <span>🌹</span>
-      <!-- ✏️ REPLACE: Your names here -->
       <span>Soma &amp; Rohit</span>
       <span>🌹</span>
     </div>
@@ -281,7 +480,6 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-box">
-        <!-- ✏️ REPLACE: date -->
         <div class="tl-date">Day One ✦</div>
         <div class="tl-ttl">The Day We Met ✨</div>
         <p class="tl-txt">The universe conspired to bring two souls together. The moment I saw you, something inside me shifted — like the world had quietly rearranged itself just for us.</p>
@@ -290,7 +488,6 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-box">
-        <!-- ✏️ REPLACE: date -->
         <div class="tl-date">First Date ✦</div>
         <div class="tl-ttl">Our First Date 🌹</div>
         <p class="tl-txt">Nervous smiles and stolen glances — a thousand butterflies. That evening felt like the beginning of forever. Because it was.</p>
@@ -299,7 +496,6 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-box">
-        <!-- ✏️ REPLACE: date -->
         <div class="tl-date">The Moment ✦</div>
         <div class="tl-ttl">When I Fell For You 💝</div>
         <p class="tl-txt">One ordinary afternoon, I looked at you laughing and realized — this is the person I want beside me every single day of my life.</p>
@@ -321,81 +517,52 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
   <span class="sec-lbl">Frozen moments of us</span>
   <h2 class="sec-ttl">Our <em>Memories</em> Together</h2>
   <p class="gal-intro">Every picture holds a heartbeat, a laugh, a glance that says everything words cannot. These are the moments I treasure most in this world.</p>
-
   <div class="photo-wall">
-
-    <!-- 📸 BIG FEATURE — ✏️ REPLACE src="YOUR_PHOTO_1.jpg" -->
     <div class="polaroid p-big" style="--rot:-1.2deg" onclick="openLB(0)">
       <img src="1.jpeg" alt="Us"/>
-      <div class="p-ov"><div class="p-cap">My favorite person in the world 💕</div><div class="p-dt"><!-- ✏️ date --> Our special day</div></div>
-      <div class="p-badge">💖</div>
-      <div class="p-num-tag">01</div>
+      <div class="p-ov"><div class="p-cap">My favorite person in the world 💕</div><div class="p-dt">Our special day</div></div>
+      <div class="p-badge">💖</div><div class="p-num-tag">01</div>
     </div>
-
-    <!-- 📸 ✏️ REPLACE src="YOUR_PHOTO_2.jpg" -->
     <div class="polaroid" style="--rot:1.8deg" onclick="openLB(1)">
       <img src="2.jpeg" alt="Together"/>
-      <div class="p-ov"><div class="p-cap">Pure happiness 😊</div><div class="p-dt"><!-- ✏️ date --> A beautiful day</div></div>
-      <div class="p-badge">💗</div>
-      <div class="p-num-tag">02</div>
+      <div class="p-ov"><div class="p-cap">Pure happiness 😊</div><div class="p-dt">A beautiful day</div></div>
+      <div class="p-badge">💗</div><div class="p-num-tag">02</div>
     </div>
-
-    <!-- 📸 TALL ✏️ REPLACE src="YOUR_PHOTO_3.jpg" -->
     <div class="polaroid p-tall" style="--rot:-2.2deg" onclick="openLB(2)">
       <img src="IMG_1166.jpeg" alt="Together"/>
-      <div class="p-ov"><div class="p-cap">Just the two of us 🌟</div><div class="p-dt"><!-- ✏️ date --> Our adventure</div></div>
-      <div class="p-badge">✨</div>
-      <div class="p-num-tag">03</div>
+      <div class="p-ov"><div class="p-cap">Just the two of us 🌟</div><div class="p-dt">Our adventure</div></div>
+      <div class="p-badge">✨</div><div class="p-num-tag">03</div>
     </div>
-
-    <!-- 📸 ✏️ REPLACE src="YOUR_PHOTO_4.jpg" -->
     <div class="polaroid" style="--rot:1.2deg" onclick="openLB(3)">
       <img src="3.jpeg" alt="Together"/>
-      <div class="p-ov"><div class="p-cap">You make me smile always 💋</div><div class="p-dt"><!-- ✏️ date --> Sweet memory</div></div>
-      <div class="p-badge">💝</div>
-      <div class="p-num-tag">04</div>
+      <div class="p-ov"><div class="p-cap">You make me smile always 💋</div><div class="p-dt">Sweet memory</div></div>
+      <div class="p-badge">💝</div><div class="p-num-tag">04</div>
     </div>
-
-    <!-- 📸 ✏️ REPLACE src="YOUR_PHOTO_5.jpg" -->
     <div class="polaroid" style="--rot:-1.8deg" onclick="openLB(4)">
       <img src="IMG_0367.jpeg" alt="Together"/>
-      <div class="p-ov"><div class="p-cap">Laughing with you 🤗</div><div class="p-dt"><!-- ✏️ date --> A perfect evening</div></div>
-      <div class="p-badge">🌹</div>
-      <div class="p-num-tag">05</div>
+      <div class="p-ov"><div class="p-cap">Laughing with you 🤗</div><div class="p-dt">A perfect evening</div></div>
+      <div class="p-badge">🌹</div><div class="p-num-tag">05</div>
     </div>
-
-    <!-- 📸 ✏️ REPLACE src="YOUR_PHOTO_6.jpg" -->
     <div class="polaroid" style="--rot:2.1deg" onclick="openLB(5)">
       <img src="IMG_2077.jpeg" alt="Together"/>
-      <div class="p-ov"><div class="p-cap">Home is with you 🏡</div><div class="p-dt"><!-- ✏️ date --> Unforgettable</div></div>
-      <div class="p-badge">💞</div>
-      <div class="p-num-tag">06</div>
+      <div class="p-ov"><div class="p-cap">Home is with you 🏡</div><div class="p-dt">Unforgettable</div></div>
+      <div class="p-badge">💞</div><div class="p-num-tag">06</div>
     </div>
-
-    <!-- 📸 ✏️ REPLACE src="YOUR_PHOTO_7.jpg" -->
     <div class="polaroid" style="--rot:-1deg" onclick="openLB(6)">
-      <img src="IMG_1400.jpeg" style="height: auto; alt="Together"/>
-      <div class="p-ov"><div class="p-cap">My whole world 🌍</div><div class="p-dt"><!-- ✏️ date --> Forever</div></div>
-      <div class="p-badge">💖</div>
-      <div class="p-num-tag">07</div>
+      <img src="IMG_1400.jpeg" alt="Together"/>
+      <div class="p-ov"><div class="p-cap">My whole world 🌍</div><div class="p-dt">Forever</div></div>
+      <div class="p-badge">💖</div><div class="p-num-tag">07</div>
     </div>
-
-    <!-- 📸 TALL ✏️ REPLACE src="YOUR_PHOTO_8.jpg" -->
     <div class="polaroid p-tall" style="--rot:1.5deg" onclick="openLB(7)">
       <img src="IMG_5133.jpeg" alt="Together"/>
-      <div class="p-ov"><div class="p-cap">Every moment counts 💫</div><div class="p-dt"><!-- ✏️ date --> Always & forever</div></div>
-      <div class="p-badge">💕</div>
-      <div class="p-num-tag">08</div>
+      <div class="p-ov"><div class="p-cap">Every moment counts 💫</div><div class="p-dt">Always & forever</div></div>
+      <div class="p-badge">💕</div><div class="p-num-tag">08</div>
     </div>
-
-    <!-- 📸 ✏️ REPLACE src="YOUR_PHOTO_9.jpg" -->
     <div class="polaroid" style="--rot:-2deg" onclick="openLB(8)">
       <img src="IMG_0932.jpeg" alt="Together"/>
-      <div class="p-ov"><div class="p-cap">You're my sunshine ☀️</div><div class="p-dt"><!-- ✏️ date --> Best day ever</div></div>
-      <div class="p-badge">✨</div>
-      <div class="p-num-tag">09</div>
+      <div class="p-ov"><div class="p-cap">You're my sunshine ☀️</div><div class="p-dt">Best day ever</div></div>
+      <div class="p-badge">✨</div><div class="p-num-tag">09</div>
     </div>
-
   </div>
 </section>
 
@@ -424,7 +591,6 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
   <h2 class="sec-ttl">A <em>Love Letter</em> For You</h2>
   <div class="ltr-wrap">
     <div class="ltr-card">
-      <!-- ✏️ REPLACE: boyfriend's name -->
       <div class="l-sal">My Cutie pie,</div>
       <div class="l-body">
         <p>On this Valentine's Day, I want you to know that loving you is the most beautiful adventure of my entire life. You walked in and rearranged everything — in the most extraordinary, wonderful way.</p>
@@ -432,7 +598,6 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
         <p>I promise to be there for you through every chapter — the ones full of joy that make us leap, and the difficult pages that make us grow together. Through it all, I will love you always. Not just when it's easy, but especially when it is hard.</p>
         <p>You are my first thought every morning, my last thought every night, and every beautiful thought in between. Happy Valentine's Day, my love. Today, tomorrow, and every day after — I choose you, always. 💕</p>
       </div>
-      <!-- ✏️ REPLACE: your name -->
       <div class="l-sign">Forever yours, Soma 💋</div>
       <div class="seal">💖</div>
     </div>
@@ -443,7 +608,6 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
 <footer>
   <span class="ft-heart">💖</span>
   <div class="ft-title">Happy Valentine's Day, My Love!</div>
-  <!-- ✏️ REPLACE: boyfriend's name -->
   <div class="ft-quote">"You are my today and all of my tomorrows, Cutie Pie 💕"</div>
   <button class="cta-btn" onclick="showMsg()">Send My Heart to You 💌</button>
   <div class="ft-small" style="margin-top:52px;">Made with 💖 just for you · 14 February 2026</div>
@@ -469,7 +633,9 @@ footer{position:relative;z-index:1;text-align:center;padding:85px 20px 55px;
 </div>
 
 <script>
-/* PRELOADER */
+/* ══════════════════════════════════════════
+   PRELOADER
+══════════════════════════════════════════ */
 setTimeout(()=>{
   const el=document.getElementById('intro');
   el.classList.add('gone');
@@ -477,21 +643,142 @@ setTimeout(()=>{
   burst(window.innerWidth/2,100,32);
 },2600);
 
-/* MUSIC */
+/* ══════════════════════════════════════════
+   MUSIC
+══════════════════════════════════════════ */
 const bgm=document.getElementById('bgm');
 bgm.src='valentine.mp3';
 bgm.volume=0.22;
-window.addEventListener('load',()=>setTimeout(()=>bgm.play().catch(()=>{}),700));
+const mbn=document.getElementById('mbn');
+
+window.addEventListener('load',()=>setTimeout(()=>{
+  bgm.play().catch(()=>{});
+},700));
+
 ['click','touchstart','keydown','mousemove'].forEach(ev=>
-  document.addEventListener(ev,()=>{if(bgm.paused)bgm.play().catch(()=>{});},{once:true})
+  document.addEventListener(ev,()=>{
+    if(bgm.paused)bgm.play().catch(()=>{});
+  },{once:true})
 );
-document.addEventListener('visibilitychange',()=>document.hidden?bgm.pause():bgm.play().catch(()=>{}));
+
+document.addEventListener('visibilitychange',()=>
+  document.hidden?bgm.pause():bgm.play().catch(()=>{})
+);
+
+bgm.addEventListener('play',()=>{
+  mbn.textContent='🎵';
+  mbn.classList.add('playing');
+  document.body.classList.add('playing-music');
+  document.getElementById('lyrics-btn').classList.add('visible');
+});
+bgm.addEventListener('pause',()=>{
+  mbn.textContent='🔇';
+  mbn.classList.remove('playing');
+  document.body.classList.remove('playing-music');
+});
+
 function toggleMusic(){
-  const b=document.getElementById('mbn');
-  bgm.paused?(bgm.play(),b.textContent='🎵'):(bgm.pause(),b.textContent='🔇');
+  bgm.paused?bgm.play():bgm.pause();
 }
 
-/* CURSOR */
+/* ══════════════════════════════════════════
+   LYRICS ENGINE
+══════════════════════════════════════════ */
+const lyricLines = Array.from(document.querySelectorAll('.lyric-line'));
+let lyricsOpen = false;
+let lastActiveIdx = -1;
+
+function toggleLyrics(){
+  const panel = document.getElementById('lyrics-panel');
+  const btn = document.getElementById('lyrics-btn');
+  lyricsOpen = !lyricsOpen;
+  panel.classList.toggle('open', lyricsOpen);
+  btn.classList.toggle('active-btn', lyricsOpen);
+  btn.textContent = lyricsOpen ? '✕' : '🎶';
+  if(lyricsOpen && !bgm.paused) syncLyricsNow();
+}
+
+function syncLyricsNow(){
+  const t = bgm.currentTime;
+  let activeIdx = -1;
+  for(let i=0;i<lyricLines.length;i++){
+    const lt = parseFloat(lyricLines[i].dataset.t);
+    const nextT = i+1 < lyricLines.length ? parseFloat(lyricLines[i+1].dataset.t) : Infinity;
+    if(t >= lt && t < nextT){ activeIdx = i; break; }
+  }
+  if(activeIdx === lastActiveIdx) return;
+  lastActiveIdx = activeIdx;
+
+  lyricLines.forEach((line,i)=>{
+    line.classList.remove('active','past');
+    if(i === activeIdx) line.classList.add('active');
+    else if(i < activeIdx) line.classList.add('past');
+  });
+
+  // Auto-scroll active line into view
+  if(activeIdx >= 0){
+    const activeLine = lyricLines[activeIdx];
+    const scroll = document.getElementById('lp-lyrics-scroll');
+    const lineTop = activeLine.offsetTop;
+    const scrollCenter = lineTop - scroll.clientHeight/2 + activeLine.clientHeight/2;
+    scroll.scrollTo({top: scrollCenter, behavior:'smooth'});
+  }
+}
+
+// Update lyrics + progress bar on timeupdate
+bgm.addEventListener('timeupdate',()=>{
+  syncLyricsNow();
+
+  // Update progress bar
+  if(bgm.duration){
+    const pct = (bgm.currentTime / bgm.duration)*100;
+    document.getElementById('lp-prog-fill').style.width = pct+'%';
+  }
+
+  // Update time display
+  document.getElementById('lp-cur-time').textContent = fmtTime(bgm.currentTime);
+});
+
+bgm.addEventListener('loadedmetadata',()=>{
+  document.getElementById('lp-dur-time').textContent = fmtTime(bgm.duration);
+});
+
+function fmtTime(s){
+  if(!s || isNaN(s)) return '0:00';
+  const m = Math.floor(s/60);
+  const sec = Math.floor(s%60);
+  return m+':'+(sec<10?'0':'')+sec;
+}
+
+function seekFromBar(e){
+  if(!bgm.duration) return;
+  const bar = document.getElementById('lp-prog-bar');
+  const rect = bar.getBoundingClientRect();
+  const pct = (e.clientX - rect.left)/rect.width;
+  bgm.currentTime = pct * bgm.duration;
+}
+
+/* ══════════════════════════════════════════
+   VISUALIZER BARS
+══════════════════════════════════════════ */
+(function buildViz(){
+  const viz = document.getElementById('lp-viz');
+  const heights=[8,14,22,30,36,28,38,26,18,32,38,24,16,34,22,12,36,28,20,30,16,38,24,14];
+  const durs=['.5s','.7s','.4s','.9s','.6s','.8s','.5s','.7s','.6s','.4s','.8s','.5s','.9s','.6s','.7s','.4s','.5s','.8s','.6s','.7s','.4s','.5s','.9s','.6s'];
+  heights.forEach((h,i)=>{
+    const b=document.createElement('div');
+    b.className='viz-bar';
+    b.style.setProperty('--h',h+'px');
+    b.style.setProperty('--dur',durs[i%durs.length]);
+    b.style.animationDelay=(i*.04)+'s';
+    b.style.height='4px';
+    viz.appendChild(b);
+  });
+})();
+
+/* ══════════════════════════════════════════
+   CURSOR
+══════════════════════════════════════════ */
 const curTx=['💕','💖','💗','💝','✨','🌹','💋','🌸'];
 let ci=0;
 const curEl=document.getElementById('cur');
@@ -503,7 +790,9 @@ window.addEventListener('scroll',()=>{
   document.getElementById('prog').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
 });
 
-/* HEART CANVAS */
+/* ══════════════════════════════════════════
+   HEART CANVAS
+══════════════════════════════════════════ */
 const canvas=document.getElementById('cvs'),ctx=canvas.getContext('2d');
 let W,H;
 const rsz=()=>{W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;};
@@ -533,7 +822,9 @@ function dH(x,y,s,c,a){
   requestAnimationFrame(anim);
 })();
 
-/* CONFETTI BURST */
+/* ══════════════════════════════════════════
+   CONFETTI BURST
+══════════════════════════════════════════ */
 const CONF=['💖','💕','💗','💝','✨','🌹','💋','🌸','🎀','💫'];
 function burst(x,y,n=18){
   for(let i=0;i<n;i++){
@@ -548,21 +839,17 @@ function burst(x,y,n=18){
   }
 }
 document.addEventListener('click',e=>{
-  if(!e.target.closest('button,input,.polaroid,.s-photo'))burst(e.clientX,e.clientY,12);
+  if(!e.target.closest('button,input,.polaroid,.s-photo,#lyrics-panel'))burst(e.clientX,e.clientY,12);
 });
 
-/* SCROLLING STRIP — duplicate for seamless loop */
-// ✏️ REPLACE: put your image filenames and captions here
+/* ══════════════════════════════════════════
+   SCROLLING STRIP
+══════════════════════════════════════════ */
 const stripData=[
-  {src:'1.jpeg', cap:'Us 💕'},
-  {src:'2.jpeg', cap:'Always 💖'},
-  {src:'3.jpeg', cap:'Forever 🌹'},
-  {src:'IMG_0834.jpeg', cap:'My love 💝'},
-  {src:'IMG_0995.jpeg', cap:'Together ✨'},
-  {src:'IMG_1113.jpeg', cap:'My heart 💗'},
-  {src:'43016b01-1edc-45b0-b9ff-bc85319bd132.jpeg', cap:'Memories 💋'},
-  {src:'IMG_1905_Original.jpeg', cap:'Our story 🌸'},
-  {src:'IMG_6961.jpeg', cap:'You & me 💞'},
+  {src:'1.jpeg',cap:'Us 💕'},{src:'2.jpeg',cap:'Always 💖'},{src:'3.jpeg',cap:'Forever 🌹'},
+  {src:'IMG_0834.jpeg',cap:'My love 💝'},{src:'IMG_0995.jpeg',cap:'Together ✨'},
+  {src:'IMG_1113.jpeg',cap:'My heart 💗'},{src:'43016b01-1edc-45b0-b9ff-bc85319bd132.jpeg',cap:'Memories 💋'},
+  {src:'IMG_1905_Original.jpeg',cap:'Our story 🌸'},{src:'IMG_6961.jpeg',cap:'You & me 💞'},
   {src:'IMG_1063.jpeg',cap:'Adore you 💖'},
 ];
 (function buildStrip(){
@@ -576,16 +863,14 @@ const stripData=[
   });
 })();
 
-/* LIGHTBOX */
+/* ══════════════════════════════════════════
+   LIGHTBOX
+══════════════════════════════════════════ */
 const photos=[
-  {src:'1.jpeg',cap:'My favorite person 💕'},
-  {src:'2.jpeg',cap:'Pure happiness 😊'},
-  {src:'IMG_1166.jpeg',cap:'Just the two of us 🌟'},
-  {src:'3.jpeg',cap:'You make me smile 💋'},
-  {src:'IMG_0367.jpeg',cap:'Laughing with you 🤗'},
-  {src:'IMG_2077.jpeg',cap:'Home is with you 🏡'},
-  {src:'IMG_1400.jpeg',cap:'My whole world 🌍'},
-  {src:'IMG_5133.jpeg',cap:'Every moment counts 💫'},
+  {src:'1.jpeg',cap:'My favorite person 💕'},{src:'2.jpeg',cap:'Pure happiness 😊'},
+  {src:'IMG_1166.jpeg',cap:'Just the two of us 🌟'},{src:'3.jpeg',cap:'You make me smile 💋'},
+  {src:'IMG_0367.jpeg',cap:'Laughing with you 🤗'},{src:'IMG_2077.jpeg',cap:'Home is with you 🏡'},
+  {src:'IMG_1400.jpeg',cap:'My whole world 🌍'},{src:'IMG_5133.jpeg',cap:'Every moment counts 💫'},
   {src:'IMG_0932.jpeg',cap:"You're my sunshine ☀️"},
 ];
 let lbIdx=0;
@@ -595,12 +880,14 @@ function navLB(d){lbIdx=(lbIdx+d+photos.length)%photos.length;updLB();}
 function closeLB(){document.getElementById('lb').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();if(e.key==='ArrowRight')navLB(1);if(e.key==='ArrowLeft')navLB(-1);});
 
-/* POPUP */
+/* ══════════════════════════════════════════
+   POPUP
+══════════════════════════════════════════ */
 const msgs=[
   {e:'💖',t:'You are my favorite person in the entire universe — today, tomorrow, always.'},
   {e:'🌹',t:'Loving you is the single best thing that has ever happened to me.'},
-  {e:'💕',t:'You make every ordinary moment feel like Valentine\'s Day.'},
-  {e:'✨',t:'With you, every breath is an adventure I never want to end.'},
+  {e:'💕',t:"You make every ordinary moment feel like Valentine's Day."},
+  {e:'✨',t:"With you, every breath is an adventure I never want to end."},
   {e:'💋',t:'You are my today, my tomorrow, and every day in between.'},
   {e:'💝',t:'I fell in love with you, and I keep falling deeper every single day.'},
   {e:'🥰',t:"You're not just my boyfriend — you're my home, my peace, my everything."},
